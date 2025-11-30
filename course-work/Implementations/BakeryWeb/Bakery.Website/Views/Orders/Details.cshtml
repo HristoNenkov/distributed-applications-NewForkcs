@@ -1,0 +1,45 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
+@model Bakery.Data.Entities.Order
+
+@{
+    ViewData["Title"] = "Детайли за поръчка";
+    var user = await UserManager.FindByIdAsync(Model.UserId);
+    var total = Model.Items.Sum(i => i.UnitPrice * i.Quantity);
+}
+
+<h1>Детайли за поръчка № @Model.Id</h1>
+
+<p>
+    <strong>Потребител:</strong> @(user?.Email ?? Model.UserId)<br />
+    <strong>Дата:</strong> @Model.CreateOn.ToString("dd.MM.yyyy HH:mm")
+</p>
+
+<h3>Поръчани продукти</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Продукт</th>
+            <th>Количество</th>
+            <th>Ед. цена</th>
+            <th>Общо</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>@item.Product?.Name</td>
+                <td>@item.Quantity</td>
+                <td>@item.UnitPrice.ToString("0.00") лв.</td>
+                <td>@((item.UnitPrice * item.Quantity).ToString("0.00")) лв.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3>Обща сума: @total.ToString("0.00") лв.</h3>
+
+<p>
+    <a asp-action="Index">Назад към списъка</a>
+</p>

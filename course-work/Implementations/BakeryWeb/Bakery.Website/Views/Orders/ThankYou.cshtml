@@ -1,0 +1,46 @@
+﻿@model Bakery.Data.Entities.Order
+
+@{
+    ViewData["Title"] = "Благодаря за поръчката";
+    var total = Model.Items.Sum(i => i.UnitPrice * i.Quantity);
+}
+
+<h1>Благодаря за поръчката!</h1>
+
+<p>Вашата поръчка беше приета успешно.</p>
+
+<p>
+    Номер на поръчка: <strong>@Model.Id</strong><br />
+    Дата: <strong>@Model.CreateOn.ToString("dd.MM.yyyy HH:mm")</strong>
+</p>
+
+<h3>Поръчани продукти</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Продукт</th>
+            <th>Количество</th>
+            <th>Ед. цена</th>
+            <th>Общо</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>@item.Product?.Name</td>
+                <td>@item.Quantity</td>
+                <td>@item.UnitPrice.ToString("0.00") лв.</td>
+                <td>@( (item.UnitPrice * item.Quantity).ToString("0.00") ) лв.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3>Обща сума: @total.ToString("0.00") лв.</h3>
+
+<p>
+    <a asp-controller="Products" asp-action="Index" class="btn btn-primary">
+        Обратно към продуктите
+    </a>
+</p>

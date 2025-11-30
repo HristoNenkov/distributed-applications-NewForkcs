@@ -1,0 +1,66 @@
+﻿@model Bakery.Data.Entities.Order
+@using Bakery.Data.Entities
+
+@{
+    ViewData["Title"] = "Поръчка";
+    var product = (Product)ViewBag.Product;
+}
+
+<h1>Поръчка</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" method="post">
+            <input type="hidden" name="productId" value="@product.Id" />
+
+            <div class="form-group">
+                <label class="control-label">Продукт</label>
+                <input class="form-control" value="@product.Name" readonly />
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Цена</label>
+                <input class="form-control" value="@product.Price" readonly />
+            </div>
+
+            <div class="form-group">
+                <label for="quantity" class="control-label">Брой</label>
+                <input id="quantity" name="quantity" class="form-control" type="number" min="1" value="1" />
+            </div>
+            <div class="form-group">
+                <label for="quantity" class="control-label">Обща цена</label>
+                <input id="totalPrice" class="form-control" readonly />
+            </div>
+            <div class="form-group mt-3">
+                <input type="submit" value="Поръчай" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="Products" asp-action="Index">Назад към продуктите</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            const unitPrice = parseFloat('@product.Price.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture)');
+            
+            const quantityInput = document.getElementById('quantity');
+            const totalInput = document.getElementById('totalPrice');
+
+            function updateTotal(){
+                const q = parseInt(quantityInput.value) || 1;
+                const total = q * unitPrice;
+                totalInput.value = total.toFixed(2);
+            }
+
+            quantityInput.addEventListener('input', updateTotal);
+            updateTotal;
+        });
+    </script>
+}

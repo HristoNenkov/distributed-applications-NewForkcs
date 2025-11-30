@@ -1,33 +1,68 @@
-# Introduction to Distributed applications
-<sup>This repository is part of the **Distributed applications course** for Computer Science of Plovdiv University</sup>\
-This course provides a comprehensive introduction to building web applications using the Model-View-Controller (MVC) design pattern with ASP.NET Core. It covers the fundamental concepts, tools, and techniques needed to develop robust, scalable, and maintainable web applications.
+# Bakery.Website  
+**Проект по Разпределени Приложения**  
+**Студент:** 2301261065  
 
-### POLL
+---
 
-### Learning Outcomes:
-By the end of the course, students will be able to:
-* Understand the MVC design pattern and its application in ASP.NET Core.
-* Develop and manage models, views, and controllers in an ASP.NET Core MVC application.
-* Implement data access using Entity Framework Core.
-* Handle form submissions and perform validation.
-* Implement authentication and authorization in web applications.
+ Описание на проекта
 
-## Getting Started
-To get started with the course, clone this repository and follow the instructions in each section. If you have any questions or run into any issues, please open an issue and we'll do our best to help.
-* [Tools](https://github.com/pkyurkchiev/distributed-applications-cs/blob/master/documentations/tools.md)
-* [Package Manager Console Commands](https://github.com/pkyurkchiev/distributed-applications/tree/master/documentations/nuget-console.md)
+**Bakery.Website** е уеб приложение, разработено с **ASP.NET Core MVC**, което представя модел на онлайн система за пекарна.  
+Проектът съдържа:
 
-### Weeks Schedule
-* First week: 
-  * presentations - [Introduction](https://github.com/pkyurkchiev/distributed-applications-cs/blob/master/presentations/Introduction.pdf), [Five principles of distributed design](https://github.com/pkyurkchiev/distributed-applications/tree/master/documentations/five-principles.md)
-  * exercises - [Exercises 01](https://github.com/pkyurkchiev/distributed-applications/tree/master/exercises/01)
-* Second week - [Exercises 02](https://github.com/pkyurkchiev/distributed-applications/tree/master/exercises/02)
-* Third week - [Exercises 03](https://github.com/pkyurkchiev/distributed-applications/tree/master/exercises/03)
-* Fourth week - [Exercises 04](https://github.com/pkyurkchiev/distributed-applications/tree/master/exercises/04)
-* Fifth week - Coursework defence, [OAuth login](https://github.com/pkyurkchiev/distributed-applications/tree/master/documentations/oauth.md)
+- MVC структура (Models, Views, Controllers)
+- Поддръжка на статични файлове чрез **wwwroot**
+- UI библиотеки: jQuery, jQuery Validate, Bootstrap
+- Конфигурационни файлове за routing, статично съдържание и стартиране на приложението
 
-### Course assignment
-* [Task](https://github.com/pkyurkchiev/distributed-applications-cs/blob/master/course-work/README.md)
+Приложението демонстрира основните принципи на ASP.NET Core — структуриране на web проекти, работа със статични ресурси, layout страници, валидиране на форми и разделяне на логика чрез MVC модела.
 
-### License
-This course is licensed under the MIT License. See the LICENSE file for more details.
+---
+
+# Структура на проекта
+
+Bakery.Website/
+├── Controllers/
+├── Models/
+├── Views/
+├── wwwroot/
+│ ├── css/
+│ ├── js/
+│ └── lib/ (Bootstrap, jQuery, jQuery Validation)
+├── appsettings.json
+├── Program.cs
+└── Bakery.Website.csproj
+
+
+---
+
+#Инсталация
+
+## Необходими инструменти
+
+- **.NET SDK 9.0 или по-нова версия**
+- **Visual Studio 2022** (препоръчително) или **Visual Studio Code**
+- Git (по желание)
+
+## Стъпки за инсталиране
+
+1. Клонирай репозиториото или свали проекта:
+   ```bash
+   git clone https://github.com/YourUser/distributed-applications-NewForkcs.git
+
+2.Влез в директорията на проекта:
+   cd course-work/Bakery.Website
+
+3.Отвори проекта:
+   Visual Studio: Open a project or solution → избери .sln
+
+4.Инсталирай зависимостите:
+   dotnet restore
+
+#Стартиране на проекта
+  Натисни бутона Run
+  Приложението ще се отвори на:
+  https://localhost:5001
+  http://localhost:5000
+ 
+			
+     

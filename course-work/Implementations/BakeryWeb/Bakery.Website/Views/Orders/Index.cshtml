@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Bakery.Data.Entities.Order>
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
+
+
+
+@{
+    ViewData["Title"] = "Направени поръчки";
+}
+
+<h1>Направени поръчки</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Номер</th>
+            <th>Потребител</th>
+            <th>Дата</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var o in Model)
+        {
+            var user = await UserManager.FindByIdAsync(o.UserId);
+            <tr>
+                <td>@o.Id</td>
+                <td>@(user?.Email ?? o.UserId)</td>
+                <td>@o.CreateOn.ToString("dd.MM.yyyy HH:mm")</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@o.Id">Детайли</a> |
+                    <a asp-action="Edit" asp-route-id="@o.Id">Редакция</a> |
+                    <a asp-action="Delete" asp-route-id="@o.Id">Изтриване</a>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

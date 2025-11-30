@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Bakery.Website.ViewModels.UserWithRolesViewModel>
+
+<h2>Users</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Email</th>
+        <th>Current Roles</th>
+        <th>Actions</th>
+    </tr>
+
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>@user.Email</td>
+
+            <td>
+                @if (user.Roles.Any())
+                {
+                    @string.Join(", ", user.Roles)
+                }
+                else
+                {
+                    <span style="color: gray;">No role</span>
+                }
+            </td>
+
+            <td>
+                <a asp-area="Admin" asp-controller="Users"
+                   asp-action="Edit" asp-route-id="@user.UserId"
+                   class="btn btn-primary">Edit Roles</a>
+            </td>
+        </tr>
+    }
+</table>
